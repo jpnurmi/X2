@@ -70,6 +70,7 @@ int main(int argc, char** argv)
     widget.setRowCount(roleCount);
     widget.setColumnCount(groupCount + 1);
     widget.setFrameStyle(QFrame::NoFrame);
+    widget.setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
 
     QPalette palette = widget.palette();
 
