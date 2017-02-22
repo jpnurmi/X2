@@ -74,9 +74,12 @@ int main(int argc, char** argv)
 
     QPalette palette = widget.palette();
 
+    for (int i = 0; i < groupCount; ++i)
+        widget.setItem(0, i + 1, new QTableWidgetItem(QString::fromLatin1(paletteGroups[i].name)));
+
     for (int c = 0; c < roleCount; ++c) {
         QString name = QString::fromLatin1(paletteRoles[c].name);
-        widget.setItem(c, 0, new QTableWidgetItem(name));
+        widget.setItem(c + 1, 0, new QTableWidgetItem(name));
         for (int i = 0; i < groupCount; ++i) {
             QColor color = palette.color(paletteGroups[i].group, paletteRoles[c].role);
             QPixmap pixmap(32, 32);
@@ -85,7 +88,7 @@ int main(int argc, char** argv)
             painter.fillRect(pixmap.rect().adjusted(1, 1, -1, -1), color);
             QString rgb;
             rgb.sprintf("%03d %03d %03d", color.red(), color.green(), color.blue());
-            widget.setItem(c, i + 1, new QTableWidgetItem(QIcon(pixmap), rgb));
+            widget.setItem(c + 1, i + 1, new QTableWidgetItem(QIcon(pixmap), rgb));
         }
     }
 
